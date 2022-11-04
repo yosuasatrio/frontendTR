@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+        @model frontendTR.Models.ms_storage_location
+}
+
+<div class="">
+    <div class="container">
+        <div class="row">
+            <form action="@Url.Action("AddBpkbProc", "Home")" method="POST">
+                <div class="row g-3">
+                    <div class="col">
+                        <label for="branch_id">Branch ID</label>
+                        <input type="text" class="form-control" id="branch_id" name="branch_id" placeholder="Enter Branch ID">
+
+                        <label for="bpkb_no">No. BPKB</label>
+                        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="form-control" id="bpkb_no" name="bpkb_no" placeholder="Enter No BPKB">
+
+                        <label for="bpkb_date_in">Tanggal BPKB In </label>
+                        <input type="date" class="form-control" id="bpkb_date_in" name="bpkb_date_in" placeholder="Enter Tanggal BPKB In">
+
+                        <label for="bpkb_date">Tanggal BPKB </label>
+                        <input type="date" class="form-control" id="bpkb_date" name="bpkb_date" placeholder="Enter Tanggal BPKB">
+
+                        <label for="faktur_no">No. Faktur</label>
+                        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="form-control" id="faktur_no" name="faktur_no" placeholder="Enter No. Faktur">
+                    </div>
+                    <div class="col">
+                        <label for="faktur_date">Tanggal Faktur</label>
+                        <input type="date" class="form-control" id="faktur_date" name="faktur_date" placeholder="Enter Tanggal Faktur">
+
+                        <label for="police_no">Nomor Polisi</label>
+                        <input type="text" class="form-control" id="police_no" name="police_no" placeholder="Enter Nomor Polisi">
+
+                        <label for="location_id">Lokasi Penyimpanan</label>
+                        @* <input type="text" class="form-control" id="location_id" name="location_id" placeholder="Enter Lokasi Penyimpanan"> *@
+                        <select class="form-control" id="location_id" name="location_id">
+                            @foreach (var loc in Model.StorageLocationList)
+                            {
+                            <option value="@loc.location_id"> @loc.location_name </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="form-group" style="margin-top:20px;">
+                        <input type="submit" value="Simpan" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
